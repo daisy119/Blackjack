@@ -1,8 +1,11 @@
 body {
-	background-color: #013220;
+	background-color: #075136;
   color: white;
   display: flex;
   justify-content: center;
+  height: 100%;
+  overflow-y:hidden;  
+  padding: 200px;
 }
 
 .container {
