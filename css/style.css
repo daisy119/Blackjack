@@ -16,6 +16,8 @@ body {
   text-align: center;
 }
 
+
+
 button {
   padding: 10px;
   margin: 10px;
@@ -24,6 +26,7 @@ button {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 15%;
   width: 100px;
+  color: navy;
 }
 
 button:hover {
