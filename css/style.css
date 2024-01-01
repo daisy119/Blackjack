@@ -16,8 +16,6 @@ body {
   text-align: center;
 }
 
-
-
 button {
   padding: 10px;
   margin: 10px;
@@ -33,3 +31,4 @@ button:hover {
   border: 1px solid rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+
