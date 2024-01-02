@@ -19,7 +19,7 @@ let d1El = document.getElementById('deck-4')
 
 
 
-//displaying win/love message---->need test
+//displaying win/lose message---->need test
 const messageEl = document.getElementById("message")
 
 
@@ -41,7 +41,7 @@ function drawDealer() {
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
-    deck2.push(cardPicked)
+    dealerHand.push(cardPicked)
     render(cardPicked)
   }
 }
