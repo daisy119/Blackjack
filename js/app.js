@@ -4,7 +4,7 @@ const choices = ["stand","hit"]
 
 
 /*-------------------------------- Variables --------------------------------*/
-let msg, playerHand, dealerHand, winner
+let msg, playerHand, dealerHand, bet, totalAmount, winner
 
 
 /*------------------------ Cached Element References ------------------------*/
