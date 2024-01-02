@@ -4,15 +4,18 @@ const choices = ["stand","hit"]
 
 
 /*-------------------------------- Variables --------------------------------*/
-let msg, playerHand, dealerHand, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
+let msg, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
 let deck1 = []
-let deck2 = []
-let deck3 = []
+let playerHand = []
+let dealerHand = []
 
 
 /*------------------------ Cached Element References ------------------------*/
-let deck1El = document.getElementById('deck-1')
-let deck2El = document.getElementById('deck-2')
+let p1El = document.getElementById('deck-1')
+let p2El = document.getElementById('deck-2')
+let d2El = document.getElementById('deck-3')
+let d1El = document.getElementById('deck-4')
+
 
 
 
