@@ -30,7 +30,7 @@ const standBtn =document.querySelector('#stand')
 console.log(standBtn)
 
 /*----------------------------- Event Listeners -----------------------------*/
-document.getElementById('play').addEventListener('click', play)
+playBtn.addEventListener('click', () => {console.log('who is playing cards')})
 
 /*-------------------------------- Functions --------------------------------*/
 init()
