@@ -54,7 +54,7 @@ function drawPlayerNew() {
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
     playerHandsNew.push(cardPicked)
-    console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandsNew)
+    // console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandsNew)
     renderPlayerNew()
   }
 }
@@ -70,13 +70,13 @@ function renderPlayerNew() {
 }
 
   function appendPlayerHand(playerHand) {
-    console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
+    // console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
     let playerHandCard = document.createElement('div')
     playerHandCard.classList.add('large')
     playerHandCard.classList.add('card')
     playerHandCard.classList.add(playerHand)
     pcards1.appendChild(playerHandCard)
-    console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
+    // console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
   }
 
 function drawPlayer() {
