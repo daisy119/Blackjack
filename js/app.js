@@ -6,10 +6,10 @@ const choices = ["stand","hit"]
 /*-------------------------------- Variables --------------------------------*/
 let msg, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
 let deck1 = []
-let playerHand = []
-let dealerHand = []
-let playerHandNew = []
-let dealerHandNew = []
+let playerHands = []
+let dealerHands = []
+let playerHandsNew = []
+let dealerHandsNew = []
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -18,9 +18,13 @@ let p2El = document.getElementById('deck-2')
 let d2El = document.getElementById('deck-3')
 let d1El = document.getElementById('deck-4')
 
-const cardContainer =document.querySelector('#card-container')
+const cardContainer = document.querySelector('#card-container')
 // console.log("🚀 ~ file: app.js:20 ~  cardContainer:",  cardContainer)
-//  cardContainer.innerHTML = '<p>sleepy</p>'
+ //cardContainer.innerHTML = '<p>sleepy</p>'
+ const pcards1 = document.querySelector('.pcards1')
+//  console.log("🚀 ~ file: app.js:25 ~ pcards1:", pcards1)
+//  pcards1.innerHTML = <p>gahhhh</p>'
+
 const messageEl = document.getElementById("message")
 // messageEl.innerHTML = 'hello'
 
@@ -49,27 +53,47 @@ function drawPlayerNew() {
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
-    playerHandNew.push(cardPicked)
-    console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandNew)
-    // renderPlayer(cardPicked)
+    playerHandsNew.push(cardPicked)
+    console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandsNew)
+    renderPlayerNew()
   }
 }
+
+function renderPlayerNew() {
+  pcards1.innerHTML = ''
+  playerHandsNew.forEach(playerHand =>{
+    // pcards1.classList.add(playerHand)
+    // console.log("🚀 ~ file: app.js:66 ~ renderPlayerNew ~ pcards1:", pcards1)
+    
+     appendPlayerHand(playerHand)
+  })
+}
+
+  function appendPlayerHand(playerHand) {
+    console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
+    let playerHandCard = document.createElement('div')
+    playerHandCard.classList.add('large')
+    playerHandCard.classList.add('card')
+    playerHandCard.classList.add(playerHand)
+    pcards1.appendChild(playerHandCard)
+    console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
+  }
 
 function drawPlayer() {
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
-    playerHand.push(cardPicked)
+    playerHands.push(cardPicked)
     renderPlayer(cardPicked)
   }
 }
  //console.log(playerHand)
 
 function renderPlayer(cardPicked) {
-  if (playerHand.length === 1) {  
+  if (playerHands.length === 1) {  
     p1El.classList.add(cardPicked) 
   }
-  else if (playerHand.length ===2) {
+  else if (playerHands.length ===2) {
     p2El.classList.add(cardPicked)
   }
 }
@@ -78,17 +102,17 @@ function drawDealer() {
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
-    dealerHand.push(cardPicked)
+    dealerHands.push(cardPicked)
     renderDealer(cardPicked)
   }
 }
  //console.log(playerHand)
 
 function renderDealer(cardPicked) {
-  if (dealerHand.length === 1) {  
+  if (dealerHands.length === 1) {  
     d1El.classList.add(cardPicked) 
   }
-  else if (dealerHand.length ===2) {
+  else if (dealerHands.length === 2) {
     d2El.classList.add(cardPicked)
   }
 }
