@@ -15,9 +15,15 @@ let p1El = document.getElementById('deck-1')
 let p2El = document.getElementById('deck-2')
 let d2El = document.getElementById('deck-3')
 let d1El = document.getElementById('deck-4')
-
-//displaying win/lose message---->need test
 const messageEl = document.getElementById("message")
+
+const playBtn =document.querySelector('#play')
+
+console.log(playBtn)
+const hitBtn =document.querySelector('#hit')
+console.log(hitBtn)
+const standBtn =document.querySelector('#stand')
+console.log(standBtn)
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.getElementById('play').addEventListener('click', play)
