@@ -6,7 +6,7 @@ const choices = ["stand","hit"]
 /*-------------------------------- Variables --------------------------------*/
 let msg, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
 let deck1 = []
-let playerHands = []
+// let playerHands = []
 let dealerHands = []
 let playerHandsNew = []
 let dealerHandsNew = []
@@ -43,10 +43,10 @@ init()
 function init() {
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-  drawDealer()
-  drawDealer()
-  drawPlayer()
-  drawPlayer()
+  // drawDealerHidden()
+  // drawDealerNew()
+  drawPlayerNew()
+  drawPlayerNew()
 }
 
 function drawPlayerNew() {
@@ -79,26 +79,7 @@ function renderPlayerNew() {
     // console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
   }
 
-function drawPlayer() {
-  if (deck1.length > 0){
-    let randIdx = Math.floor(Math.random()*deck1.length)
-    let cardPicked = deck1.splice(randIdx, 1)[0]
-    playerHands.push(cardPicked)
-    renderPlayer(cardPicked)
-  }
-}
- //console.log(playerHand)
-
-function renderPlayer(cardPicked) {
-  if (playerHands.length === 1) {  
-    p1El.classList.add(cardPicked) 
-  }
-  else if (playerHands.length ===2) {
-    p2El.classList.add(cardPicked)
-  }
-}
-
-function drawDealer() {
+function drawDealerHidden() {
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
