@@ -7,6 +7,7 @@ const choices = ["stand","hit"]
 let msg, playerHand, dealerHand, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
 let deck1 = []
 let deck2 = []
+let deck3 = []
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -47,20 +48,15 @@ function render(cardPicked) {
   if (deck2.length === 1) {  
     deck2El.classList.remove("outline")
   }
-
   if (deck2.length > 1) {  
     deck2El.classList.remove(cardToRemove)
   }
-
   cardToRemove = cardPicked  
-
   deck2El.classList.add(cardPicked)  
-
   if (deck2.length === 26) {  
     deck2El.classList.add("shadow");
     deck1El.classList.remove("shadow");
   }
-	
   if (deck1.length === 0) {  
     deck1El.classList.add("outline");
     deck1El.classList.remove("back-blue");
