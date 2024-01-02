@@ -15,10 +15,14 @@ let p1El = document.getElementById('deck-1')
 let p2El = document.getElementById('deck-2')
 let d2El = document.getElementById('deck-3')
 let d1El = document.getElementById('deck-4')
+
+const cardContainer =document.querySelector('#card-container')
+console.log("🚀 ~ file: app.js:20 ~  cardContainer:",  cardContainer)
+// cardContainer.innerHTML = '<p>sleepy</p>'
 const messageEl = document.getElementById("message")
+// messageEl.innerHTML = 'hello'
 
 const playBtn =document.querySelector('#play')
-
 console.log(playBtn)
 const hitBtn =document.querySelector('#hit')
 console.log(hitBtn)
