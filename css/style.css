@@ -32,6 +32,9 @@ h1 {
   /* margin: 8px 0; */
   padding: 8px;
 }
+img {
+  height: 32px;
+}
 
 #play {
   background-color: cornflowerblue;
