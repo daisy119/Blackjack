@@ -1,53 +1,55 @@
 /*-------------------------------- Constants --------------------------------*/
-const choices = ["stand","hit"]
+
 
 /*-------------------------------- Variables --------------------------------*/
-let msg, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
-let deck1 = []
-// let playerHands = []
-let dealerHands = []
-let playerHandsNew = []
-let dealerHandsNew = []
+let msg, bet, winner, playerScore, dealerScore, playerHandsNew, dealerHandsNew, deck1
+let totalAmount = 2500
 
 
 /*------------------------ Cached Element References ------------------------*/
 const dealerSumMsg = document.querySelector('#dealersum')
 const playerSumMsg = document.querySelector('#playersum')
-// console.log("🚀 ~ file: app.js:20 ~ playerSum:", playerSum)
-//  playerSum.innerHTML = '<p>hangry</p>'
 
 const cardContainer = document.querySelector('#card-container')
-// console.log("🚀 ~ file: app.js:20 ~  cardContainer:",  cardContainer)
- //cardContainer.innerHTML = '<p>sleepy</p>'
- const pcards1 = document.querySelector('.pcards1')
- const dcards1 = document.querySelector('.dcards1')
-//  console.log("🚀 ~ file: app.js:26 ~  dcards1:",  dcards1)
-//  console.log("🚀 ~ file: app.js:25 ~ pcards1:", pcards1)
-// pcards1.innerHTML = '<p>gahhhh</p>'
-// dcards1.innerHTML = '<p>sleepy</p>'
+const pcards1 = document.querySelector('.pcards1')
+const dcards1 = document.querySelector('.dcards1')
 
 const messageEl = document.getElementById("message")
-// messageEl.innerHTML = 'hello'
 
 const playBtn =document.querySelector('#play')
 const hitBtn =document.querySelector('#hit')
 const standBtn =document.querySelector('#stand')
-// console.log(standBtn)
 
 /*----------------------------- Event Listeners -----------------------------*/
-playBtn.addEventListener('click', function() {console.log('who is playing cards')})
-hitBtn.addEventListener('click',drawPlayerNew)
+playBtn.addEventListener('click', init)
+hitBtn.addEventListener('click', drawPlayerNew)
+standBtn.addEventListener('click', drawDealerNew)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
 
 function init() {
+  
+  // set scores to 0
+  playerScore = 0
+  dealerScore = 0
+
+  // clear hands
+  playerHandsNew = []
+  dealerHandsNew = []
+
+  // set new deck
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+
+  // Ask player for bet
+  // makeBet()
+  //deal
   drawDealerNew()
   drawDealerNew()
   drawPlayerNew()
   drawPlayerNew()
+  
 }
 
 function drawPlayerNew() {
@@ -55,8 +57,7 @@ function drawPlayerNew() {
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
     playerHandsNew.push(cardPicked)
-    // console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandsNew)
-    renderPlayerNew()
+        renderPlayerNew()
     calculatePlayerSum()
   }
 }
@@ -64,52 +65,45 @@ function drawPlayerNew() {
 function renderPlayerNew() {
   pcards1.innerHTML = ''
   playerHandsNew.forEach(playerHand =>{
-    // pcards1.classList.add(playerHand)
-    // console.log("🚀 ~ file: app.js:66 ~ renderPlayerNew ~ pcards1:", pcards1)
-    
-     appendPlayerHand(playerHand)
+    appendPlayerHand(playerHand)
   })
 }
 
   function appendPlayerHand(playerHand) {
-    // console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
     let playerHandCard = document.createElement('div')
     playerHandCard.classList.add('large')
     playerHandCard.classList.add('card')
     playerHandCard.classList.add(playerHand)
     pcards1.appendChild(playerHandCard)
     
-    // console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
-  }
+      }
 
   function calculatePlayerSum() {
-    // console.log(playerHandsNew)
-    let playerSum = 0
+        let playerSum = 0
     let aceCounter = 0
     playerHandsNew.forEach((playerHandNew) => {
-    //  console.dir(playerHandNew)
-     let pt =playerHandNew.slice(1)
-     console.log("🚀 ~ file: app.js:92 ~ playerHandsNew.forEach ~ playerHandNew:", playerHandNew)
-     if (pt === "J" || pt === "Q" || pt === "K"){
+      let pt =playerHandNew.slice(1)
+          if (pt === "J" || pt === "Q" || pt === "K"){
       pt = 10
-     } else if (pt === "A") {
+    } else if (pt === "A") {
       pt =11
       aceCounter += 1
-     }
-     else {
+    } else {
       pt = parseInt(pt)
-     }
+    }
     playerSum += pt
     while(playerSum > 21 && aceCounter > 0){
       playerSum -= 10
       aceCounter -= 1
     }
-     playerSumMsg.textContent ="Player: "+ playerSum
-     
+    playerSumMsg.textContent ="Player: "+ playerSum
     })
+
     let playerSumObj = {character: "player", sum: playerSum}
     catch21(playerSumObj)
-   }
+    
+    compareSum(playerSumObj.sum)
+  }
 
 
 function drawDealerNew(){
@@ -117,9 +111,8 @@ function drawDealerNew(){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
     dealerHandsNew.push(cardPicked)
-    // console.log("🚀 ~ file: app.js:105 ~ dealerHandsNew:", dealerHandsNew)
-     renderDealerNew()
-     calculateDealerSum()
+    renderDealerNew()
+    calculateDealerSum()
 }}
 
 
@@ -133,98 +126,67 @@ function renderDealerNew(){
       appendDealerHand(dealerHandsNew[i]);
     }  
   }
-  // dealerHandsNew.forEach(dealerHand =>{
-  // appendDealerHand(dealerHand)
-  // })
-  // console.log("🚀 ~ file: app.js:119 ~ renderDealerNew ~ dealerHandsNew:", dealerHandsNew)
-}
+        }
 
 function appendDealerHand(dealerHand) {
-  // console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
-  let dealerHandCard = document.createElement('div')
+    let dealerHandCard = document.createElement('div')
   dealerHandCard.classList.add('large')
   dealerHandCard.classList.add('card')
   dealerHandCard.classList.add(dealerHand)
   dcards1.appendChild(dealerHandCard)
-  // console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
-}
+  }
 
 function appendDealerHandHidden(dealerHand) {
-  // console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
-  let dealerHandCard = document.createElement('div')
+    let dealerHandCard = document.createElement('div')
   dealerHandCard.classList.add('large')
   dealerHandCard.classList.add('card')
   dealerHandCard.classList.add('back-blue')
   dealerHandCard.classList.add(dealerHand)
   dcards1.appendChild(dealerHandCard)
-  // console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
-}
+  }
 
 function calculateDealerSum() {
-  // console.log(playerHandsNew)
-  let dealerSum = 0
+    let dealerSum = 0
   let aceCounter = 0
   dealerHandsNew.forEach((dealerHandNew) => {
-  //  console.dir(playerHandNew)
-   let pt = dealerHandNew.slice(1)
-   if (pt === "J" || pt === "Q" || pt === "K"){
+    let pt = dealerHandNew.slice(1)
+    if (pt === "J" || pt === "Q" || pt === "K"){
     pt = 10
-   } else if (pt === "A") {
+  } else if (pt === "A") {
     pt = 11
     aceCounter += 1
-   }
-   else {
+  } else {
     pt = parseInt(pt)
-   }
-
-   dealerSum += pt
+  }
+  
+  dealerSum += pt
     while(dealerSum > 21 && aceCounter > 0){
       dealerSum -= 10
       aceCounter -= 1
     }
-   dealerSumMsg.textContent ="Dealer: "+dealerSum
+
+    dealerSumMsg.textContent ="Dealer: "+dealerSum
   })
   let dealerSumObj = {character: "dealer", sum: dealerSum}
   catch21(dealerSumObj)
- }
+}
 
- function catch21(obj) {
-    console.log(obj)
- 
+function catch21(obj) {
   if (obj.character === 'player' && obj.sum ===21) {
-    // console.log('wah')
-    messageEl.textContent = `👑 You got a Blackjack! `
+        messageEl.textContent = `👑 You got a Blackjack!`
   }
   
   else if (obj.character ==="dealer" && obj.sum === 21) {
     
     messageEl.textContent = `👑 dealer got a Blackjack!` 
   }
- }
+}
 
 
- //check for winner
-//  function compareSum() {
-//   if (playerSum = 21) {
-//     msg.textContent = "👑 Blackjack winner winner chicken dinner"
-//   }
-// //check first round if any party got 21
-
-//   //player =21
-
-//   //player_stand=true  + player < 21 + dealer >21
-
-//   //player_stand=true + player <21 + dealer <21 + (dealer - player) >0
-
-//   // player = dealer ->msg +restart asking for bet
-
-
-
-//   // else if (playerSum<21 && dealerSum >21 ){
-//   //   msg.textContent = "winner winner chicken dinner"
-//   // }
-
-//  }
+function compareSum(p,q) {
+  console.log("🚀 ~ file: app.js:210 ~ compareSum ~ p:", p)
+  console.log('keep pushing')
+}
 
 function play(e) {
   console.log(e)
