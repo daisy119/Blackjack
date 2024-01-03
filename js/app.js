@@ -13,10 +13,12 @@ let dealerHandsNew = []
 
 
 /*------------------------ Cached Element References ------------------------*/
-let p1El = document.getElementById('deck-1')
-let p2El = document.getElementById('deck-2')
-let d2El = document.getElementById('deck-3')
-let d1El = document.getElementById('deck-4')
+const dealerSum = document.querySelector('#dealersum')
+// console.log("🚀 ~ file: app.js:17 ~ dealerSum:", dealerSum)
+// dealerSum.innerHTML = '<p>hangry</p>'
+const playerSum = document.querySelector('#playersum')
+// console.log("🚀 ~ file: app.js:20 ~ playerSum:", playerSum)
+//  playerSum.innerHTML = '<p>hangry</p>'
 
 const cardContainer = document.querySelector('#card-container')
 // console.log("🚀 ~ file: app.js:20 ~  cardContainer:",  cardContainer)

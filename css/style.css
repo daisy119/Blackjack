@@ -46,7 +46,7 @@ img {
 } */
 
 .pcards1, .dcards1 {
-  border: 4px solid purple; 
+
   display: flex wrap;
   flex-direction: column;
   justify-content: space-around;
