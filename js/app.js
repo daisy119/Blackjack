@@ -1,6 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 const choices = ["stand","hit"]
-
+const values = {
+  "dA": 11, "dQ": 10, "dK": 10, "dJ": 10, "d10": 10, "d09": 9, "d08": 8, "d07": 7, "d06": 6, "d05": 5, "d04": 4, "d03": 3, "d02": 2, "hA": 11, "hQ": 10, "hK": 10, "hJ": 10, "h10": 10, "h09": 9, "h08": 8, "h07": 7, "h06": 6, "h05": 5, "h04": 4, "h03": 3, "h02": 2, "cA": 11, "cQ": 10, "cK": 10, "cJ": 10, "c10": 10, "c09": 9, "c08": 8, "c07": 7, "c06": 6, "c05": 5, "c04": 4, "c03": 3, "c02": 2, "sA": 11, "sQ": 10, "sK": 10, "sJ": 10, "s10": 10, "s09": 9, "s08": 8, "s07": 7, "s06": 6, "s05": 5, "s04": 4, "s03": 3, "s02": 2
+}
 
 
 /*-------------------------------- Variables --------------------------------*/
@@ -14,8 +16,6 @@ let dealerHandsNew = []
 
 /*------------------------ Cached Element References ------------------------*/
 const dealerSum = document.querySelector('#dealersum')
-// console.log("🚀 ~ file: app.js:17 ~ dealerSum:", dealerSum)
-// dealerSum.innerHTML = '<p>hangry</p>'
 const playerSum = document.querySelector('#playersum')
 // console.log("🚀 ~ file: app.js:20 ~ playerSum:", playerSum)
 //  playerSum.innerHTML = '<p>hangry</p>'
@@ -61,6 +61,7 @@ function drawPlayerNew() {
     playerHandsNew.push(cardPicked)
     // console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandsNew)
     renderPlayerNew()
+    calculateSum()
   }
 }
 
@@ -81,8 +82,36 @@ function renderPlayerNew() {
     playerHandCard.classList.add('card')
     playerHandCard.classList.add(playerHand)
     pcards1.appendChild(playerHandCard)
+    
     // console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
   }
+
+  function calculateSum() {
+    // console.log(playerHandsNew)
+    let sum = 0
+    let aceCounter = 0
+    playerHandsNew.forEach((playerHandNew) => {
+    //  console.dir(playerHandNew)
+     let pt =playerHandNew.slice(1)
+     
+     if (pt === "J" || pt === "Q" || pt === "K"){
+      pt = 10
+     } else if (pt === "A") {
+      pt =11
+      aceCounter += 1
+     }
+     else {
+      pt = parseInt(pt)
+     }
+     console.log(pt)
+     sum += pt  
+     if (sum > 21 && aceCounter > 0) {
+      sum - 10
+     }
+     console.log("🚀 ~ file: app.js:103 ~ playerHandsNew.forEach ~ sum:", sum)
+    })
+  //   console.log("🚀 ~ file: app.js:94 ~ playerHandsNew.forEach ~ sum:", sum)
+   }
 
 
 function drawDealerNew(){
@@ -90,8 +119,8 @@ function drawDealerNew(){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
     dealerHandsNew.push(cardPicked)
-    console.log("🚀 ~ file: app.js:105 ~ dealerHandsNew:", dealerHandsNew)
-    renderDealerNew()
+    // console.log("🚀 ~ file: app.js:105 ~ dealerHandsNew:", dealerHandsNew)
+     renderDealerNew()
 }}
 
 
@@ -103,13 +132,12 @@ function renderDealerNew(){
     }
     else {
       appendDealerHand(dealerHandsNew[i]);
-    } 
+    }  
   }
-  
   // dealerHandsNew.forEach(dealerHand =>{
   // appendDealerHand(dealerHand)
   // })
-  console.log("🚀 ~ file: app.js:119 ~ renderDealerNew ~ dealerHandsNew:", dealerHandsNew)
+  // console.log("🚀 ~ file: app.js:119 ~ renderDealerNew ~ dealerHandsNew:", dealerHandsNew)
 }
 
 function appendDealerHand(dealerHand) {
@@ -119,8 +147,7 @@ function appendDealerHand(dealerHand) {
   dealerHandCard.classList.add('card')
   dealerHandCard.classList.add(dealerHand)
   dcards1.appendChild(dealerHandCard)
-  console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
-  // toggleHiddenCard()
+  // console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
 }
 
 function appendDealerHandHidden(dealerHand) {
@@ -131,8 +158,7 @@ function appendDealerHandHidden(dealerHand) {
   dealerHandCard.classList.add('back-blue')
   dealerHandCard.classList.add(dealerHand)
   dcards1.appendChild(dealerHandCard)
-  console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
-  // toggleHiddenCard()
+  // console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
 }
 
 
