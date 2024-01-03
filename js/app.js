@@ -107,7 +107,8 @@ function renderPlayerNew() {
      playerSumMsg.textContent ="Player: "+ playerSum
      
     })
-    check21(playerSum)
+    let playerSumObj = {character: "player", sum: playerSum}
+    catch21(playerSumObj)
    }
 
 
@@ -183,16 +184,21 @@ function calculateDealerSum() {
     }
    dealerSumMsg.textContent ="Dealer: "+dealerSum
   })
+  let dealerSumObj = {character: "dealer", sum: dealerSum}
+  catch21(dealerSumObj)
  }
 
- function check21(playerSum) {
-  // console.log("rahhh")
-  if (playerSum === 21) {
-    console.log("🚀 ~ file: app.js:188 ~ check21 ~ playerSumMsg.textContent:", playerSumMsg.textContent)
-    msg.textContent = "👑 You got a Blackjack! "
+ function catch21(obj) {
+    console.log(obj)
+ 
+  if (obj.character === 'player' && obj.sum ===21) {
+    // console.log('wah')
+    messageEl.textContent = `👑 You got a Blackjack! `
   }
-  else if (dealerSumMsg.textContent === 21) {
-    msg.textContent = "👑 dealr got a Blackjack! "
+  
+  else if (obj.character ==="dealer" && obj.sum === 21) {
+    
+    messageEl.textContent = `👑 dealer got a Blackjack!` 
   }
  }
 
