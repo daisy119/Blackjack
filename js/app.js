@@ -1,9 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
 const choices = ["stand","hit"]
-const values = {
-  "dA": 11, "dQ": 10, "dK": 10, "dJ": 10, "d10": 10, "d09": 9, "d08": 8, "d07": 7, "d06": 6, "d05": 5, "d04": 4, "d03": 3, "d02": 2, "hA": 11, "hQ": 10, "hK": 10, "hJ": 10, "h10": 10, "h09": 9, "h08": 8, "h07": 7, "h06": 6, "h05": 5, "h04": 4, "h03": 3, "h02": 2, "cA": 11, "cQ": 10, "cK": 10, "cJ": 10, "c10": 10, "c09": 9, "c08": 8, "c07": 7, "c06": 6, "c05": 5, "c04": 4, "c03": 3, "c02": 2, "sA": 11, "sQ": 10, "sK": 10, "sJ": 10, "s10": 10, "s09": 9, "s08": 8, "s07": 7, "s06": 6, "s05": 5, "s04": 4, "s03": 3, "s02": 2
-}
-
 
 /*-------------------------------- Variables --------------------------------*/
 let msg, bet, totalAmount, winner, playerTotal, dealerTotal, cardToRemove
@@ -15,8 +11,8 @@ let dealerHandsNew = []
 
 
 /*------------------------ Cached Element References ------------------------*/
-const dealerSum = document.querySelector('#dealersum')
-const playerSum = document.querySelector('#playersum')
+const dealerSumMsg = document.querySelector('#dealersum')
+const playerSumMsg = document.querySelector('#playersum')
 // console.log("🚀 ~ file: app.js:20 ~ playerSum:", playerSum)
 //  playerSum.innerHTML = '<p>hangry</p>'
 
@@ -61,7 +57,7 @@ function drawPlayerNew() {
     playerHandsNew.push(cardPicked)
     // console.log("🚀 ~ file: app.js:39 ~ playerHandNew:", playerHandsNew)
     renderPlayerNew()
-    calculateSum()
+    calculatePlayerSum()
   }
 }
 
@@ -86,14 +82,13 @@ function renderPlayerNew() {
     // console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
   }
 
-  function calculateSum() {
+  function calculatePlayerSum() {
     // console.log(playerHandsNew)
-    let sum = 0
+    let playerSum = 0
     let aceCounter = 0
     playerHandsNew.forEach((playerHandNew) => {
     //  console.dir(playerHandNew)
      let pt =playerHandNew.slice(1)
-     
      if (pt === "J" || pt === "Q" || pt === "K"){
       pt = 10
      } else if (pt === "A") {
@@ -104,11 +99,12 @@ function renderPlayerNew() {
       pt = parseInt(pt)
      }
      console.log(pt)
-     sum += pt  
-     if (sum > 21 && aceCounter > 0) {
-      sum - 10
+     playerSum += pt  
+     if (playerSum > 21 && aceCounter > 0) {
+      playerSum - 10*aceCounter
      }
-     console.log("🚀 ~ file: app.js:103 ~ playerHandsNew.forEach ~ sum:", sum)
+     playerSumMsg.textContent ="Player:"+playerSum
+     console.log("🚀 ~ file: app.js:103 ~ playerHandsNew.forEach ~ sum:", playerSum)
     })
   //   console.log("🚀 ~ file: app.js:94 ~ playerHandsNew.forEach ~ sum:", sum)
    }
