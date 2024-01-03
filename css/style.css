@@ -1,6 +1,5 @@
 body {
 	background-color: #075136;
-  color: white;
   height: 100%;
   /* overflow-y:hidden;   */
   padding: 200px;
@@ -53,6 +52,10 @@ img {
   width: 400 px;
   padding: 14px;
   /* gap:  16px; */
+}
+
+#red {
+  color: crimson;
 }
 
 
