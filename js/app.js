@@ -22,8 +22,11 @@ const cardContainer = document.querySelector('#card-container')
 // console.log("🚀 ~ file: app.js:20 ~  cardContainer:",  cardContainer)
  //cardContainer.innerHTML = '<p>sleepy</p>'
  const pcards1 = document.querySelector('.pcards1')
+ const dcards1 = document.querySelector('.dcards1')
+//  console.log("🚀 ~ file: app.js:26 ~  dcards1:",  dcards1)
 //  console.log("🚀 ~ file: app.js:25 ~ pcards1:", pcards1)
-//  pcards1.innerHTML = <p>gahhhh</p>'
+// pcards1.innerHTML = '<p>gahhhh</p>'
+// dcards1.innerHTML = '<p>sleepy</p>'
 
 const messageEl = document.getElementById("message")
 // messageEl.innerHTML = 'hello'
@@ -43,8 +46,8 @@ init()
 function init() {
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-  // drawDealerHidden()
-  // drawDealerNew()
+  drawDealerNew()
+  drawDealerNew()
   drawPlayerNew()
   drawPlayerNew()
 }
@@ -79,24 +82,58 @@ function renderPlayerNew() {
     // console.log("🚀 ~ file: app.js:77 ~ appendPlayerHand ~ playerHandCard:", playerHandCard)
   }
 
-function drawDealerHidden() {
+
+function drawDealerNew(){
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
-    dealerHands.push(cardPicked)
-    renderDealer(cardPicked)
-  }
-}
- //console.log(playerHand)
+    dealerHandsNew.push(cardPicked)
+    console.log("🚀 ~ file: app.js:105 ~ dealerHandsNew:", dealerHandsNew)
+    renderDealerNew()
+}}
 
-function renderDealer(cardPicked) {
-  if (dealerHands.length === 1) {  
-    d1El.classList.add(cardPicked) 
+
+function renderDealerNew(){
+  dcards1.innerHTML = ''
+  for (let i = 0; i < dealerHandsNew.length; i++) {
+    if (i === 0) {
+      appendDealerHandHidden(dealerHandsNew[i]);
+    }
+    else {
+      appendDealerHand(dealerHandsNew[i]);
+    } 
   }
-  else if (dealerHands.length === 2) {
-    d2El.classList.add(cardPicked)
-  }
+  
+  // dealerHandsNew.forEach(dealerHand =>{
+  // appendDealerHand(dealerHand)
+  // })
+  console.log("🚀 ~ file: app.js:119 ~ renderDealerNew ~ dealerHandsNew:", dealerHandsNew)
 }
+
+function appendDealerHand(dealerHand) {
+  // console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
+  let dealerHandCard = document.createElement('div')
+  dealerHandCard.classList.add('large')
+  dealerHandCard.classList.add('card')
+  dealerHandCard.classList.add(dealerHand)
+  dcards1.appendChild(dealerHandCard)
+  console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
+  // toggleHiddenCard()
+}
+
+function appendDealerHandHidden(dealerHand) {
+  // console.log("🚀 ~ file: app.js:70 ~ appendPlayerHand ~ playerHand:", playerHand)
+  let dealerHandCard = document.createElement('div')
+  dealerHandCard.classList.add('large')
+  dealerHandCard.classList.add('card')
+  dealerHandCard.classList.add('back-blue')
+  dealerHandCard.classList.add(dealerHand)
+  dcards1.appendChild(dealerHandCard)
+  console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
+  // toggleHiddenCard()
+}
+
+
 
 function play(e) {
   console.log(e)
