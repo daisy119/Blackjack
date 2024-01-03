@@ -1,10 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 
-
 /*-------------------------------- Variables --------------------------------*/
-let msg, bet, winner, playerScore, dealerScore, playerHandsNew, dealerHandsNew, deck1
+let msg, bet, winner, playerScore, dealerScore, playerHands, dealerHands, deck1
 let totalAmount = 2500
-
 
 /*------------------------ Cached Element References ------------------------*/
 const dealerSumMsg = document.querySelector('#dealersum')
@@ -22,8 +20,8 @@ const standBtn =document.querySelector('#stand')
 
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener('click', init)
-hitBtn.addEventListener('click', drawPlayerNew)
-standBtn.addEventListener('click', drawDealerNew)
+hitBtn.addEventListener('click', drawPlayer)
+standBtn.addEventListener('click',() => {})
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -35,55 +33,27 @@ function init() {
   dealerScore = 0
 
   // clear hands
-  playerHandsNew = []
-  dealerHandsNew = []
+  playerHands = []
+  dealerHands = []
 
   // set new deck
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-
   // Ask player for bet
   // makeBet()
   //deal
-  drawDealerNew()
-  drawDealerNew()
-  drawPlayerNew()
-  drawPlayerNew()
-  
+  drawDealer()
+  drawDealer()
+  drawPlayer()
+  drawPlayer()
 }
 
-function drawPlayerNew() {
-  if (deck1.length > 0){
-    let randIdx = Math.floor(Math.random()*deck1.length)
-    let cardPicked = deck1.splice(randIdx, 1)[0]
-    playerHandsNew.push(cardPicked)
-        renderPlayerNew()
-    calculatePlayerSum()
-  }
-}
-
-function renderPlayerNew() {
-  pcards1.innerHTML = ''
-  playerHandsNew.forEach(playerHand =>{
-    appendPlayerHand(playerHand)
-  })
-}
-
-  function appendPlayerHand(playerHand) {
-    let playerHandCard = document.createElement('div')
-    playerHandCard.classList.add('large')
-    playerHandCard.classList.add('card')
-    playerHandCard.classList.add(playerHand)
-    pcards1.appendChild(playerHandCard)
-    
-      }
-
-  function calculatePlayerSum() {
-        let playerSum = 0
-    let aceCounter = 0
-    playerHandsNew.forEach((playerHandNew) => {
-      let pt =playerHandNew.slice(1)
-          if (pt === "J" || pt === "Q" || pt === "K"){
+function calculateHands(hands) {
+  let playerSum = 0
+  let aceCounter = 0
+  hands.forEach((hand) => {
+    let pt = hand.slice(1)
+    if (pt === "J" || pt === "Q" || pt === "K"){
       pt = 10
     } else if (pt === "A") {
       pt =11
@@ -96,34 +66,57 @@ function renderPlayerNew() {
       playerSum -= 10
       aceCounter -= 1
     }
-    playerSumMsg.textContent ="Player: "+ playerSum
-    })
+  })
+  return playerSum
+}
 
-    let playerSumObj = {character: "player", sum: playerSum}
-    catch21(playerSumObj)
-    
-    compareSum(playerSumObj.sum)
-  }
-
-
-function drawDealerNew(){
+function drawPlayer() {
   if (deck1.length > 0){
     let randIdx = Math.floor(Math.random()*deck1.length)
     let cardPicked = deck1.splice(randIdx, 1)[0]
-    dealerHandsNew.push(cardPicked)
+    playerHands.push(cardPicked)
+    renderPlayerHands()
+    playerScore = calculateHands(playerHands)
+    playerSumMsg.textContent ="Player: "+ playerScore
+    // calculatePlayerSum()
+  }
+}
+
+function renderPlayerHands() {
+  pcards1.innerHTML = ''
+  playerHands.forEach(playerHand =>{
+    appendPlayerHand(playerHand)
+  })
+}
+
+  function appendPlayerHand(playerHand) {
+    let playerHandCard = document.createElement('div')
+    playerHandCard.classList.add('large')
+    playerHandCard.classList.add('card')
+    playerHandCard.classList.add(playerHand)
+    pcards1.appendChild(playerHandCard)
+  }
+
+
+function drawDealer(){
+  if (deck1.length > 0){
+    let randIdx = Math.floor(Math.random()*deck1.length)
+    let cardPicked = deck1.splice(randIdx, 1)[0]
+    dealerHands.push(cardPicked)
     renderDealerNew()
-    calculateDealerSum()
+    dealerScore = calculateHands(dealerHands)
+    // calculateDealerSum()
 }}
 
 
 function renderDealerNew(){
   dcards1.innerHTML = ''
-  for (let i = 0; i < dealerHandsNew.length; i++) {
+  for (let i = 0; i < dealerHands.length; i++) {
     if (i === 0) {
-      appendDealerHandHidden(dealerHandsNew[i]);
+      appendDealerHandHidden(dealerHands[i]);
     }
     else {
-      appendDealerHand(dealerHandsNew[i]);
+      appendDealerHand(dealerHands[i]);
     }  
   }
         }
@@ -145,32 +138,6 @@ function appendDealerHandHidden(dealerHand) {
   dcards1.appendChild(dealerHandCard)
   }
 
-function calculateDealerSum() {
-    let dealerSum = 0
-  let aceCounter = 0
-  dealerHandsNew.forEach((dealerHandNew) => {
-    let pt = dealerHandNew.slice(1)
-    if (pt === "J" || pt === "Q" || pt === "K"){
-    pt = 10
-  } else if (pt === "A") {
-    pt = 11
-    aceCounter += 1
-  } else {
-    pt = parseInt(pt)
-  }
-  
-  dealerSum += pt
-    while(dealerSum > 21 && aceCounter > 0){
-      dealerSum -= 10
-      aceCounter -= 1
-    }
-
-    dealerSumMsg.textContent ="Dealer: "+dealerSum
-  })
-  let dealerSumObj = {character: "dealer", sum: dealerSum}
-  catch21(dealerSumObj)
-}
-
 function catch21(obj) {
   if (obj.character === 'player' && obj.sum ===21) {
         messageEl.textContent = `👑 You got a Blackjack!`
@@ -182,11 +149,6 @@ function catch21(obj) {
   }
 }
 
-
-function compareSum(p,q) {
-  console.log("🚀 ~ file: app.js:210 ~ compareSum ~ p:", p)
-  console.log('keep pushing')
-}
 
 function play(e) {
   console.log(e)
