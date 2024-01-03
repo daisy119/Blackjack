@@ -103,7 +103,7 @@ function renderPlayerNew() {
      if (playerSum > 21 && aceCounter > 0) {
       playerSum - 10*aceCounter
      }
-     playerSumMsg.textContent ="Player:"+playerSum
+     playerSumMsg.textContent ="Player: "+playerSum
      console.log("🚀 ~ file: app.js:103 ~ playerHandsNew.forEach ~ sum:", playerSum)
     })
   //   console.log("🚀 ~ file: app.js:94 ~ playerHandsNew.forEach ~ sum:", sum)
@@ -117,6 +117,7 @@ function drawDealerNew(){
     dealerHandsNew.push(cardPicked)
     // console.log("🚀 ~ file: app.js:105 ~ dealerHandsNew:", dealerHandsNew)
      renderDealerNew()
+     calculateDealerSum()
 }}
 
 
@@ -157,7 +158,31 @@ function appendDealerHandHidden(dealerHand) {
   // console.log("🚀 ~ file: app.js:127 ~ appenddealerHand ~ dealerHandCard:", dealerHandCard)
 }
 
+function calculateDealerSum() {
+  // console.log(playerHandsNew)
+  let dealerSum = 0
+  let aceCounter = 0
+  dealerHandsNew.forEach((dealerHandNew) => {
+  //  console.dir(playerHandNew)
+   let pt = dealerHandNew.slice(1)
+   if (pt === "J" || pt === "Q" || pt === "K"){
+    pt = 10
+   } else if (pt === "A") {
+    pt =11
+    aceCounter += 1
+   }
+   else {
+    pt = parseInt(pt)
+   }
+   console.log(pt)
+   dealerSum += pt  
+   if (dealerSum > 21 && aceCounter > 0) {
+    dealerSum - 10*aceCounter
+   }
+   dealerSumMsg.textContent ="Dealer: "+dealerSum
 
+  })
+ }
 
 function play(e) {
   console.log(e)

@@ -55,6 +55,11 @@ img {
   /* gap:  16px; */
 }
 
+#dealersum, #playersum {
+  color:white;
+  font-size: 24px;
+}
+
 #red {
   color: red;
 }
