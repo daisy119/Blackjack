@@ -89,6 +89,7 @@ function renderPlayerNew() {
     playerHandsNew.forEach((playerHandNew) => {
     //  console.dir(playerHandNew)
      let pt =playerHandNew.slice(1)
+     console.log("🚀 ~ file: app.js:92 ~ playerHandsNew.forEach ~ playerHandNew:", playerHandNew)
      if (pt === "J" || pt === "Q" || pt === "K"){
       pt = 10
      } else if (pt === "A") {
@@ -98,15 +99,22 @@ function renderPlayerNew() {
      else {
       pt = parseInt(pt)
      }
-     console.log(pt)
-     playerSum += pt  
-     if (playerSum > 21 && aceCounter > 0) {
-      playerSum - 10*aceCounter
-     }
-     playerSumMsg.textContent ="Player: "+playerSum
-     console.log("🚀 ~ file: app.js:103 ~ playerHandsNew.forEach ~ sum:", playerSum)
+    //  if (playerSum > 21 && aceCounter > 0) {
+    //   playerSum += pt
+    //   playerSum - 10*aceCounter
+    //  }
+    //  else {
+    //   playerSum += pt
+    //  }
+    playerSum += pt
+    while(playerSum > 21 && aceCounter > 0){
+      playerSum -= 10
+      aceCounter -= 1
+    }
+     playerSumMsg.textContent ="Player: "+ playerSum
+     
     })
-  //   console.log("🚀 ~ file: app.js:94 ~ playerHandsNew.forEach ~ sum:", sum)
+    check21(playerSum)
    }
 
 
@@ -168,21 +176,59 @@ function calculateDealerSum() {
    if (pt === "J" || pt === "Q" || pt === "K"){
     pt = 10
    } else if (pt === "A") {
-    pt =11
+    pt = 11
     aceCounter += 1
    }
    else {
     pt = parseInt(pt)
    }
-   console.log(pt)
-   dealerSum += pt  
+
+     
    if (dealerSum > 21 && aceCounter > 0) {
+    dealerSum += pt
     dealerSum - 10*aceCounter
    }
+   else {
+    dealerSum += pt
+   }
    dealerSumMsg.textContent ="Dealer: "+dealerSum
-
   })
  }
+
+ function check21(playerSum) {
+  // console.log("rahhh")
+  if (playerSum === 21) {
+    console.log("🚀 ~ file: app.js:188 ~ check21 ~ playerSumMsg.textContent:", playerSumMsg.textContent)
+    msg.textContent = "👑 You got a Blackjack! "
+  }
+  else if (dealerSumMsg.textContent === 21) {
+    msg.textContent = "👑 dealr got a Blackjack! "
+  }
+ }
+
+
+ //check for winner
+//  function compareSum() {
+//   if (playerSum = 21) {
+//     msg.textContent = "👑 Blackjack winner winner chicken dinner"
+//   }
+// //check first round if any party got 21
+
+//   //player =21
+
+//   //player_stand=true  + player < 21 + dealer >21
+
+//   //player_stand=true + player <21 + dealer <21 + (dealer - player) >0
+
+//   // player = dealer ->msg +restart asking for bet
+
+
+
+//   // else if (playerSum<21 && dealerSum >21 ){
+//   //   msg.textContent = "winner winner chicken dinner"
+//   // }
+
+//  }
 
 function play(e) {
   console.log(e)
