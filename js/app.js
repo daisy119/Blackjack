@@ -99,13 +99,6 @@ function renderPlayerNew() {
      else {
       pt = parseInt(pt)
      }
-    //  if (playerSum > 21 && aceCounter > 0) {
-    //   playerSum += pt
-    //   playerSum - 10*aceCounter
-    //  }
-    //  else {
-    //   playerSum += pt
-    //  }
     playerSum += pt
     while(playerSum > 21 && aceCounter > 0){
       playerSum -= 10
@@ -183,14 +176,11 @@ function calculateDealerSum() {
     pt = parseInt(pt)
    }
 
-     
-   if (dealerSum > 21 && aceCounter > 0) {
-    dealerSum += pt
-    dealerSum - 10*aceCounter
-   }
-   else {
-    dealerSum += pt
-   }
+   dealerSum += pt
+    while(dealerSum > 21 && aceCounter > 0){
+      dealerSum -= 10
+      aceCounter -= 1
+    }
    dealerSumMsg.textContent ="Dealer: "+dealerSum
   })
  }
