@@ -7,6 +7,7 @@
  I choose this game because ti is a low-entry barrier game. 
 
 ## **[Play the game here](https://blackjack-jw-1.netlify.app/)**
+## **[Planning Material](https://docs.google.com/document/d/1zCzHDkN59MP92njKR-57EgQxe7JwxOUyVAPJTCxpeZE/edit)**
 
 # 💻 Technologies used 
 
@@ -37,9 +38,10 @@
 - [x] add google fonts
 - [x] add sound effect
 - [ ] Disable Hit and Stand Button until players click Deal button
+- [ ] set max card num = 6
 - [ ] Confetti
-- [ ] celebration animations(anime.css)
-- [ ] celebrating sound effect
+- [ ] celebration animations(animate.css)
+- [ ] celebrating sound effect + "bust in the msg"
 - [ ] library for fun winning/losing messages
 - [ ] dark/light mode
 
