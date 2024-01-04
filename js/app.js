@@ -27,8 +27,7 @@ const wrongSound = new Audio('../assets/audio/wrong.mp3')
 const jazzSound = new Audio('../assets/audio/jazz music.mp3')
 const bgMusicSound = new Audio('../assets/audio/background-music.wav')
 const coinSound = new Audio('../assets/audio/coin.wav')
-jazzSound.volume = 0.3
-bgMusicSound.volume = 0.3
+jazzSound.volume = 0.05
 wrongSound.volume = 0.3
 pokerSound.volume = 0.3
 coinSound.volume = 0.3
@@ -96,7 +95,7 @@ function init() {
   betEl.textContent = `Bank: $${totalAmount}`
 
 
-jazzSound.play()
+
 
 
 }
@@ -107,6 +106,8 @@ function dealCards() {
   drawDealer()
   drawPlayer()
   drawPlayer()
+  jazzSound.play()
+  // pokerSound.play()
 }
 
 function drawPlayer() {
@@ -127,7 +128,7 @@ function renderPlayerHands() {
   playerHands.forEach(playerHand =>{
     appendPlayerHand(playerHand)
   })
-  pokerSound.play()
+  
 }
 
 function appendPlayerHand(playerHand) {
@@ -182,7 +183,7 @@ function renderDealerNew(){
       appendDealerHand(dealerHands[i]);
     }  
   }
-  pokerSound.play()
+  // pokerSound.play()
   }
 
 function appendDealerHand(dealerHand) {
