@@ -26,7 +26,7 @@ const pokerSound = new Audio('../assets/audio/poker-card.wav')
 const wrongSound = new Audio('../assets/audio/wrong.mp3')
 const jazzSound = new Audio('../assets/audio/jazz music.mp3')
 const coinSound = new Audio('../assets/audio/coin.wav')
-jazzSound.volume = 0.05
+jazzSound.volume = 0.3
 wrongSound.volume = 0.3
 pokerSound.volume = 0.3
 coinSound.volume = 0.3
@@ -94,7 +94,7 @@ function init() {
   betEl.textContent = `Bank: $${totalAmount}`
 
 
-
+  
 
 
 }
@@ -126,7 +126,7 @@ function renderPlayerHands() {
   playerHands.forEach(playerHand =>{
     appendPlayerHand(playerHand)
   })
-  
+  pokerSound.play()
 }
 
 function appendPlayerHand(playerHand) {
@@ -181,7 +181,6 @@ function renderDealerNew(){
       appendDealerHand(dealerHands[i]);
     }  
   }
-  // pokerSound.play()
   }
 
 function appendDealerHand(dealerHand) {
@@ -216,6 +215,9 @@ function catch21(sum) {
   }
   
   }
+ 
+
+
 
 function compareSum() {
   
@@ -272,15 +274,6 @@ function won() {
 function tied() {
   totalAmount += bet
   betEl.textContent = `Bank: $${totalAmount}`
-}
-
-function disableBtns(a) {
-  if (a.disabled) {
-    a.disabled = false
-  }
-  if (!a.disabled) {
-    a.disab;ed = true 
-  }
 }
 
 //to do :disable button when result is out and when player hit stand
