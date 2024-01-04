@@ -38,6 +38,9 @@ function init() {
   playerHands = []
   dealerHands = []
 
+  //reset message
+  // messageEl.textContent = null 
+
   // set new deck
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
@@ -156,14 +159,7 @@ function catch21(sum) {
   
   }
  
-  // if (obj.character === 'player' && obj.sum ===21) {
-  //       messageEl.textContent = `👑 You got a Blackjack!`
-  // }
-  
-  // else if (obj.character ==="dealer" && obj.sum === 21) {
-    
-  //   messageEl.textContent = `👑 dealer got a Blackjack!` 
-  // }
+
 
 
 function compareSum() {
@@ -171,17 +167,17 @@ function compareSum() {
   if (playerSum ===21 && dealerSum !== 21){
     messageEl.textContent = `👑 You got a Blackjack!`
   }
-  else if (dealerSum === playerSum){
-    messageEl.textContent = `Push! 👔 Play again`
-  }
   else if (playerSum < 21 && dealerSum >21){
     messageEl.textContent = `winner winner chicken dinner 🍗`
   }
   else if (dealerSum === 21) {
-    messageEl.textContent = `👑 Dealer got a Blackjack!`
+    messageEl.textContent = `👑 Dealer got a Blackjack! You lose.`
   }
   else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
     messageEl.textContent = `winner winner chicken dinner 🍗`
+  }
+  else if (dealerSum === playerSum){
+    messageEl.textContent = `Push! 👔 Play again`
   }
   else {
     messageEl.textContent = `you lost! try again`
@@ -190,7 +186,7 @@ function compareSum() {
 }
 
 function endPlayerTurn() {
-  //disable button
+  //disable hit button
   
   dcards1.firstChild.classList.remove("back-blue")
   dealerSumMsg.textContent ="Dealer: "+ dealerSum
