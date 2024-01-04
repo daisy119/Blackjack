@@ -26,7 +26,17 @@ const betEl = document.getElementById("bet")
 playBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', drawPlayer)
 standBtn.addEventListener('click',endPlayerTurn)
-twoBtn.addEventListener('click', () => {console.log('wahh')})
+twoBtn.addEventListener('click', () => {
+  totalAmount -=2
+  betEl.textContent = `Bank: $${totalAmount}`
+})
+fiveBtn.addEventListener('click', () => { 
+  totalAmount -=5
+  betEl.textContent = `Bank: $${totalAmount}`})
+tenBtn.addEventListener('click', () => {
+  totalAmount -=10
+  betEl.textContent = `Bank: $${totalAmount}`
+})
 
 /*-------------------------------- Functions --------------------------------*/
 init()
