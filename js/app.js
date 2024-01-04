@@ -25,7 +25,6 @@ const currentBetEl = document.getElementById("current-bet")
 const pokerSound = new Audio('../assets/audio/poker-card.wav')
 const wrongSound = new Audio('../assets/audio/wrong.mp3')
 const jazzSound = new Audio('../assets/audio/jazz music.mp3')
-const bgMusicSound = new Audio('../assets/audio/background-music.wav')
 const coinSound = new Audio('../assets/audio/coin.wav')
 jazzSound.volume = 0.05
 wrongSound.volume = 0.3
@@ -107,7 +106,6 @@ function dealCards() {
   drawPlayer()
   drawPlayer()
   jazzSound.play()
-  // pokerSound.play()
 }
 
 function drawPlayer() {
@@ -218,9 +216,6 @@ function catch21(sum) {
   }
   
   }
- 
-
-
 
 function compareSum() {
   
@@ -277,6 +272,15 @@ function won() {
 function tied() {
   totalAmount += bet
   betEl.textContent = `Bank: $${totalAmount}`
+}
+
+function disableBtns(a) {
+  if (a.disabled) {
+    a.disabled = false
+  }
+  if (!a.disabled) {
+    a.disab;ed = true 
+  }
 }
 
 //to do :disable button when result is out and when player hit stand
