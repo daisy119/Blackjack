@@ -22,6 +22,10 @@ const dealBtn = document.querySelector('#deal-cards')
 let hiddenCard = document.querySelector('.back-blue')
 const betEl = document.getElementById("bet")
 const currentBetEl = document.getElementById("current-bet")
+const pokerSound = new Audio('../assets/audio/poker-card.wav')
+const wrongSound = new Audio('../assets/audio/wrong.mp3')
+const jazzSound = new Audio('../assets/audio/jazz music.mp3')
+const bgMusicSound = new Audio('../assets/audio/background-music.wav')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
