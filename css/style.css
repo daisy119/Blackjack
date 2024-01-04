@@ -1,5 +1,5 @@
 body {
-	background-color: #075136;
+	background-color: silver;
   height: 100%;
   /* overflow-y:hidden;   */
   padding: 200px;
@@ -9,7 +9,7 @@ body {
   align-items: center;
   text-align: center;
   font-family: sans-serif;
-  border: 10px solid purple;
+  /* border: 10px solid purple; */
 }
 
 
@@ -18,9 +18,10 @@ button {
   margin: 8px;
   font-size: 24px;
   /* background-color: rgb(241, 218, 90); */
-  background-color: rgb(200, 36, 36);
+  background-color: black;
   border-radius: 15%;
   width: 140px;
+  color:red;
 }
 
 button:hover {
@@ -32,14 +33,14 @@ h1 {
   font-weight: 700;
   /* margin: 8px 0; */
   padding: 8px;
-  border: 10px solid orange;
+  /* border: 10px solid orange; */
 }
 img {
   height: 40px;
 }
 
 #play {
-  background-color: goldenrod;
+  background-color: black;
 }
 /* 
 #card-container {
@@ -67,7 +68,7 @@ img {
 }
 
 #bet, p {
-  color: gold;
+  color: black;
 }
 
 #two, #five, #ten {
@@ -75,6 +76,7 @@ img {
   border-radius: 50%;
   height:50px;
   width: 50px;
+  background-color: red;
 }
 
 
