@@ -21,7 +21,7 @@ button {
   background-color: black;
   border-radius: 15%;
   width: 140px;
-  color:red;
+  color:rgba(242, 66, 54, 1);
 }
 
 button:hover {
@@ -64,7 +64,7 @@ img {
 }
 
 #red {
-  color: red;
+  color: rgba(242, 66, 54, 1);
 }
 
 #bet, p {
@@ -85,7 +85,8 @@ img {
 }
 
 #playersum, #dealersum  {
-  color: black
+  color: black;
+  background-color: rgba(69, 105, 144, 0.5);
 }
 
 
