@@ -4,14 +4,14 @@
  
  Blackjack is a card game in which the objective is to achieve a hand value of 21 or les while susrpassing the dealer's hand. PLayers begin by choosing bets range from $2 to $5 and then clicking the "Deal" button. Throughout the game, players can decide to click "hit" or "stand" button based on the strength of their current hand. Exceeding a hand value of 21 results in a loss for the players. Players can click "Play New Game " to resetart the game. 
 
-**[Play the game here](https://blackjack-jw-1.netlify.app/)**
+## **[Play the game here](https://blackjack-jw-1.netlify.app/)**
 
 # Technologies used 💻
 
-* CSS
-* Javascript
-* HTML
-* Git
+* <a>![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)</a>
+* <a>![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)</a>
+* <a>![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)</a>
+* <a>![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)</a>
 
 # Attributions 💌
 * assets/audio
