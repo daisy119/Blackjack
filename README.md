@@ -18,13 +18,16 @@
 # Attributions 💌
 * assets/audio
 
-[poker-card. wav](https://freesound.org/people/fartheststar/sounds/201808/#comments)
+* [poker-card. wav](https://freesound.org/people/fartheststar/sounds/201808/#comments)
+* [coin.wave](https://freesound.org/people/LittleRobotSoundFactory/sounds/276220/)
 
-[coin.wave](https://freesound.org/people/LittleRobotSoundFactory/sounds/276220/)
+* [jazz music.mp3](https://freesound.org/people/NikoSardas/sounds/456797/)
 
-[jazz music.mp3](https://freesound.org/people/NikoSardas/sounds/456797/)
-
-[wrong.mp3](https://freesound.org/people/jalastram/sounds/208883/)
+* [wrong.mp3](https://freesound.org/people/jalastram/sounds/208883/)
+* [joker puff.png](https://www.flaticon.com/free-icon/joker_594926)
+* [jackpot-machine.png](https://www.flaticon.com/free-icon/jackpot-machine_2460454)
+* [3d-dice.png](https://www.flaticon.com/free-icon/3d-dice_10490256)
+* [casino.png](https://www.flaticon.com/free-icon/poker_1036781)
 
 
 
