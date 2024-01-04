@@ -26,6 +26,12 @@ const pokerSound = new Audio('../assets/audio/poker-card.wav')
 const wrongSound = new Audio('../assets/audio/wrong.mp3')
 const jazzSound = new Audio('../assets/audio/jazz music.mp3')
 const bgMusicSound = new Audio('../assets/audio/background-music.wav')
+const coinSound = new Audio('../assets/audio/coin.wav')
+jazzSound.volume = 0.3
+bgMusicSound.volume = 0.3
+wrongSound.volume = 0.3
+pokerSound.volume = 0.3
+coinSound.volume = 0.3
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -56,6 +62,7 @@ function calculateBet(a){
   bet += a
   betEl.textContent = `Bank: $${totalAmount}`
   currentBetEl.textContent = `Bet: $${bet}`
+  coinSound.play()
 }
 
 /*-------------------------------- Functions --------------------------------*/
@@ -89,7 +96,7 @@ function init() {
   betEl.textContent = `Bank: $${totalAmount}`
 
 
-
+jazzSound.play()
 
 
 }
@@ -120,6 +127,7 @@ function renderPlayerHands() {
   playerHands.forEach(playerHand =>{
     appendPlayerHand(playerHand)
   })
+  pokerSound.play()
 }
 
 function appendPlayerHand(playerHand) {
@@ -174,6 +182,7 @@ function renderDealerNew(){
       appendDealerHand(dealerHands[i]);
     }  
   }
+  pokerSound.play()
   }
 
 function appendDealerHand(dealerHand) {
@@ -204,6 +213,7 @@ function catch21(sum) {
     dcards1.firstChild.classList.remove("back-blue")
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
     messageEl.textContent = `you lost! try again🥀---->21`
+    wrongSound.play()
   }
   
   }
@@ -236,6 +246,7 @@ function compareSum() {
   }
   else {
     messageEl.textContent = `You lost! try again🥀---else`
+    wrongSound.play()
   }
 
 }
