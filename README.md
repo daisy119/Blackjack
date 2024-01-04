@@ -2,9 +2,9 @@
 
 ![Alt text](images/Gamepic-wide.png)
  
- Blackjack is a card game in which the objective is to achieve a hand value of 21 or less while susparssing the dealer's hand. Players begin by choosing bets range from $2 to $5 and then clicking the "Deal" button. Throughout the game, players can decide to click "hit" or "stand" button based on the strength of their current hand. Exceeding a hand value of 21 results in a loss for the players. Players can click "Play New Game " to restart the game. 
+ Blackjack is a card game in which the objective is to achieve a hand value of 21 or less while surpassing the dealer's hand. Players begin by choosing bets range from $2 to $10 and then clicking the "Deal" button. Throughout the game, players can decide to click "Hit" or "Stand" button based on the strength of their current hand. Exceeding a hand value of 21 results in a loss for the players. Players can click "Play New Game " to restart the game. 
 
- I chose this game because it is a low-entry barrier game. 
+ I chose this game because it is a easy game to learn for players. 
 
 ## **[Play the game here](https://blackjack-jw-1.netlify.app/)**
 ## **[Planning Material](https://docs.google.com/document/d/1zCzHDkN59MP92njKR-57EgQxe7JwxOUyVAPJTCxpeZE/edit)**

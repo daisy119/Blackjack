@@ -1,7 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*-------------------------------- Variables --------------------------------*/
-let msg, bet, playerSum, dealerSum, playerHands, dealerHands, deck1
+let msg, bet, playerSum, dealerSum, playerHand, dealerHand, deck
 let totalAmount = 2500
 
 
@@ -38,19 +38,12 @@ hitBtn.addEventListener('click', drawPlayer)
 standBtn.addEventListener('click',endPlayerTurn)
 twoBtn.addEventListener('click', () => { 
   calculateBet(2)
-  
-  // totalAmount -=2
-  // betEl.textContent = `Bank: $${totalAmount}`
 })
 fiveBtn.addEventListener('click', () => { 
   calculateBet(5)
-  // totalAmount -=5
-  // betEl.textContent = `Bank: $${totalAmount}`
 })
 tenBtn.addEventListener('click', () => {
   calculateBet(10)
-  // totalAmount -=10
-  // betEl.textContent = `Bank: $${totalAmount}`
 })
 dealBtn.addEventListener('click', dealCards)
 
@@ -77,10 +70,10 @@ function init() {
   currentBetEl.textContent = `Bet: $${bet}`
 
   // clear hands
-  playerHands = []
-  renderPlayerHands()
-  dealerHands = []
-  renderDealerNew()
+  playerHand = []
+  renderPlayerHand()
+  dealerHand = []
+  renderDealerHand()
 
   //reset message
   messageEl.textContent = ""
@@ -88,15 +81,10 @@ function init() {
   playerSumMsg.textContent = ""
   
   // set new deck
-  deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+  deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
   //display bet
   betEl.textContent = `Bank: $${totalAmount}`
-
-
-  
-
-
 }
 
 function dealCards() {
@@ -109,21 +97,20 @@ function dealCards() {
 }
 
 function drawPlayer() {
-  if (deck1.length > 0){
-    let randIdx = Math.floor(Math.random()*deck1.length)
-    let cardPicked = deck1.splice(randIdx, 1)[0]
-    playerHands.push(cardPicked)
-    renderPlayerHands()
-    playerSum = calculateHands(playerHands)
+  if (deck.length > 0){
+    let randIdx = Math.floor(Math.random()*deck.length)
+    let cardPicked = deck.splice(randIdx, 1)[0]
+    playerHand.push(cardPicked)
+    renderPlayerHand()
+    playerSum = calculateHand(playerHand)
     playerSumMsg.textContent ="Player: "+ playerSum
     catch21(playerSum)
-    
   }
 }
 
-function renderPlayerHands() {
+function renderPlayerHand() {
   pcards1.innerHTML = ''
-  playerHands.forEach(playerHand =>{
+  playerHand.forEach(playerHand =>{
     appendPlayerHand(playerHand)
   })
   pokerSound.play()
@@ -137,11 +124,11 @@ function appendPlayerHand(playerHand) {
   pcards1.appendChild(playerHandCard)
 }
 
-function calculateHands(hands) {
+function calculateHand(hand) {
   let playerSum = 0
   let aceCounter = 0
-  hands.forEach((hand) => {
-    let pt = hand.slice(1)
+  hand.forEach((card) => {
+    let pt = card.slice(1)
     if (pt === "J" || pt === "Q" || pt === "K"){
       pt = 10
     } else if (pt === "A") {
@@ -161,24 +148,23 @@ function calculateHands(hands) {
   
 
 function drawDealer(){
-  if (deck1.length > 0){
-    let randIdx = Math.floor(Math.random()*deck1.length)
-    let cardPicked = deck1.splice(randIdx, 1)[0]
-    dealerHands.push(cardPicked)
-    renderDealerNew()
-    dealerSum = calculateHands(dealerHands)
+  if (deck.length > 0){
+    let randIdx = Math.floor(Math.random()*deck.length)
+    let cardPicked = deck.splice(randIdx, 1)[0]
+    dealerHand.push(cardPicked)
+    renderDealerHand()
+    dealerSum = calculateHand(dealerHand)
 }}
 
 
-function renderDealerNew(){
+function renderDealerHand(){
   dcards1.innerHTML = ''
-  for (let i = 0; i < dealerHands.length; i++) {
+  for (let i = 0; i < dealerHand.length; i++) {
     if (i === 0 ) {
-      isHiddenCard = false
-      appendDealerHandHidden(dealerHands[i]);
+      appendDealerHandHidden(dealerHand[i]);
     }
     else {
-      appendDealerHand(dealerHands[i]);
+      appendDealerHand(dealerHand[i]);
     }  
   }
   }
@@ -213,10 +199,7 @@ function catch21(sum) {
     messageEl.textContent = `you lost! try again🥀---->21`
     wrongSound.play()
   }
-  
-  }
- 
-
+}
 
 
 function compareSum() {
@@ -224,7 +207,6 @@ function compareSum() {
   if (playerSum ===21 && dealerSum !== 21){
     messageEl.textContent = `👑 You got a Blackjack!`
     won()
-
   }
   else if (playerSum < 21 && dealerSum >21){
     messageEl.textContent = `Winner winner chicken dinner 🍗---dealer >21`
@@ -236,7 +218,6 @@ function compareSum() {
   else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
     messageEl.textContent = `Winner winner chicken dinner 🍗---dealer <21`
     won()
-
   }
   else if (dealerSum === playerSum){
     messageEl.textContent = `Push! 👔 Play again`
@@ -259,7 +240,6 @@ function endPlayerTurn() {
   }
   dealerSumMsg.textContent ="Dealer: "+ dealerSum
   compareSum()
-
 }
 
 function unhideDealerCard() {
