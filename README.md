@@ -1,4 +1,4 @@
-# Blackjack 🃏
+# 🃏 Blackjack 
 
 ![Alt text](images/Gamepic-wide.png)
  
@@ -8,14 +8,14 @@
 
 ## **[Play the game here](https://blackjack-jw-1.netlify.app/)**
 
-# Technologies used 💻
+# 💻 Technologies used 
 
 * <a>![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)</a>
 * <a>![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)</a>
 * <a>![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)</a>
 * <a>![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)</a>
 
-# Attributions 💌
+# 💌 Attributions 
 * assets/audio
 
 * [poker-card. wav](https://freesound.org/people/fartheststar/sounds/201808/#comments)
@@ -33,7 +33,7 @@
 
 
 
-# Ice Box 🧊 
+# 🧊 Ice Box  
 - [x] add fonts
 - [x] add card passing sound
 - [ ] Disable Hit and Stand Button until players click Deal button
