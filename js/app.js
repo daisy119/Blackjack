@@ -13,14 +13,20 @@ const cardContainer = document.querySelector('#card-container')
 const pcards1 = document.querySelector('.pcards1')
 const dcards1 = document.querySelector('.dcards1')
 const playBtn =document.querySelector('#play')
-const hitBtn =document.querySelector('#hit')
-const standBtn =document.querySelector('#stand')
-const hiddenCard = document.querySelector('.back-blue')
+const hitBtn = document.querySelector('#hit')
+const standBtn = document.querySelector('#stand')
+const twoBtn = document.querySelector('#two')
+const fiveBtn = document.querySelector('#five')
+const tenBtn = document.querySelector('#ten')
+let hiddenCard = document.querySelector('.back-blue')
+const betEl = document.getElementById("bet")
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', drawPlayer)
 standBtn.addEventListener('click',endPlayerTurn)
+twoBtn.addEventListener('click', () => {console.log('wahh')})
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -43,8 +49,12 @@ function init() {
   // set new deck
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-  // Ask player for bet
+  //display bet
+  betEl.textContent = `Bank: $${totalAmount}`
+
   // makeBet()
+
+
   //deal
   drawDealer()
   drawDealer()
