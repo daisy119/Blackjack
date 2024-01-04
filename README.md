@@ -17,14 +17,15 @@
 * assets/audio
 
 # Ice Box 🧊 
+- [x] add fonts
+- [x] add card passing sound
 - [ ] Disable Hit and Stand Button until players click Deal button
 - [ ] Confetti
 - [ ] celebration animations
 - [ ] celebrating sound effect
 - [ ] library for fun winning/losing messages
 - [ ] dark/light mode
-- [x] add fonts
-- [x] add card passing sound
+
 
 
 
