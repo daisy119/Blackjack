@@ -80,6 +80,15 @@ img {
   background-color: black;
 }
 
+#sign {
+  width:40px;
+}
+
+#playersum, #dealersum  {
+  color: black
+}
+
+
 
 
 
