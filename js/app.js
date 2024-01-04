@@ -196,7 +196,7 @@ function catch21(sum) {
   else if (sum >21) {
     dcards1.firstChild.classList.remove("back-blue")
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
-    messageEl.textContent = `you lost! try again🥀---->21`
+    messageEl.textContent = `Bust💨! try again🥀`
     wrongSound.play()
   }
 }
