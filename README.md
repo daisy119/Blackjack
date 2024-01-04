@@ -34,11 +34,11 @@
 
 
 # 🧊 Ice Box  
-- [x] add fonts
-- [x] add card passing sound
+- [x] add google fonts
+- [x] add sound effect
 - [ ] Disable Hit and Stand Button until players click Deal button
 - [ ] Confetti
-- [ ] celebration animations
+- [ ] celebration animations(anime.css)
 - [ ] celebrating sound effect
 - [ ] library for fun winning/losing messages
 - [ ] dark/light mode
