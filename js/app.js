@@ -60,6 +60,7 @@ function drawPlayer() {
     playerSum = calculateHands(playerHands)
     playerSumMsg.textContent ="Player: "+ playerSum
     catch21(playerSum)
+    
   }
 }
 
@@ -147,6 +148,11 @@ function catch21(sum) {
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
     compareSum()
   }
+  else if (sum >21) {
+    dcards1.firstChild.classList.remove("back-blue")
+    dealerSumMsg.textContent ="Dealer: "+ dealerSum
+    messageEl.textContent = `you lost! try again`
+  }
   
   }
  
@@ -171,6 +177,15 @@ function compareSum() {
   else if (playerSum < 21 && dealerSum >21){
     messageEl.textContent = `winner winner chicken dinner 🍗`
   }
+  else if (dealerSum === 21) {
+    messageEl.textContent = `👑 Dealer got a Blackjack!`
+  }
+  else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
+    messageEl.textContent = `winner winner chicken dinner 🍗`
+  }
+  else {
+    messageEl.textContent = `you lost! try again`
+  }
 
 }
 
@@ -179,7 +194,10 @@ function endPlayerTurn() {
   
   dcards1.firstChild.classList.remove("back-blue")
   dealerSumMsg.textContent ="Dealer: "+ dealerSum
-
+  while(dealerSum< 17  && dealerSum <playerSum) {
+    drawDealer()
+  }
+  compareSum()
 
 }
 
