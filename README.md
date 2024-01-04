@@ -18,6 +18,18 @@
 # Attributions 💌
 * assets/audio
 
+[poker-card. wav](https://freesound.org/people/fartheststar/sounds/201808/#comments)
+
+[coin.wave](https://freesound.org/people/LittleRobotSoundFactory/sounds/276220/)
+
+[jazz music.mp3](https://freesound.org/people/NikoSardas/sounds/456797/)
+
+[wrong.mp3](https://freesound.org/people/jalastram/sounds/208883/)
+
+
+
+
+
 # Ice Box 🧊 
 - [x] add fonts
 - [x] add card passing sound
