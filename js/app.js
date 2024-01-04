@@ -1,7 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*-------------------------------- Variables --------------------------------*/
-let msg, bet, winner, playerScore, dealerScore, playerHands, dealerHands, deck1
+let msg, bet, winner, playerSum, dealerSum, playerHands, dealerHands, deck1
 let totalAmount = 2500
 
 /*------------------------ Cached Element References ------------------------*/
@@ -18,10 +18,12 @@ const playBtn =document.querySelector('#play')
 const hitBtn =document.querySelector('#hit')
 const standBtn =document.querySelector('#stand')
 
+const hiddenCard = document.querySelector('.back-blue')
+
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', drawPlayer)
-standBtn.addEventListener('click',() => {})
+standBtn.addEventListener('click',endPlayerTurn)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -29,8 +31,8 @@ init()
 function init() {
   
   // set scores to 0
-  playerScore = 0
-  dealerScore = 0
+  playerSum = 0
+  dealerSum = 0
 
   // clear hands
   playerHands = []
@@ -46,6 +48,34 @@ function init() {
   drawDealer()
   drawPlayer()
   drawPlayer()
+}
+
+
+function drawPlayer() {
+  if (deck1.length > 0){
+    let randIdx = Math.floor(Math.random()*deck1.length)
+    let cardPicked = deck1.splice(randIdx, 1)[0]
+    playerHands.push(cardPicked)
+    renderPlayerHands()
+    playerSum = calculateHands(playerHands)
+    playerSumMsg.textContent ="Player: "+ playerSum
+    catch21(playerSum)
+  }
+}
+
+function renderPlayerHands() {
+  pcards1.innerHTML = ''
+  playerHands.forEach(playerHand =>{
+    appendPlayerHand(playerHand)
+  })
+}
+
+function appendPlayerHand(playerHand) {
+  let playerHandCard = document.createElement('div')
+  playerHandCard.classList.add('large')
+  playerHandCard.classList.add('card')
+  playerHandCard.classList.add(playerHand)
+  pcards1.appendChild(playerHandCard)
 }
 
 function calculateHands(hands) {
@@ -69,34 +99,7 @@ function calculateHands(hands) {
   })
   return playerSum
 }
-
-function drawPlayer() {
-  if (deck1.length > 0){
-    let randIdx = Math.floor(Math.random()*deck1.length)
-    let cardPicked = deck1.splice(randIdx, 1)[0]
-    playerHands.push(cardPicked)
-    renderPlayerHands()
-    playerScore = calculateHands(playerHands)
-    playerSumMsg.textContent ="Player: "+ playerScore
-    // calculatePlayerSum()
-  }
-}
-
-function renderPlayerHands() {
-  pcards1.innerHTML = ''
-  playerHands.forEach(playerHand =>{
-    appendPlayerHand(playerHand)
-  })
-}
-
-  function appendPlayerHand(playerHand) {
-    let playerHandCard = document.createElement('div')
-    playerHandCard.classList.add('large')
-    playerHandCard.classList.add('card')
-    playerHandCard.classList.add(playerHand)
-    pcards1.appendChild(playerHandCard)
-  }
-
+  
 
 function drawDealer(){
   if (deck1.length > 0){
@@ -104,8 +107,7 @@ function drawDealer(){
     let cardPicked = deck1.splice(randIdx, 1)[0]
     dealerHands.push(cardPicked)
     renderDealerNew()
-    dealerScore = calculateHands(dealerHands)
-    // calculateDealerSum()
+    dealerSum = calculateHands(dealerHands)
 }}
 
 
@@ -122,7 +124,7 @@ function renderDealerNew(){
         }
 
 function appendDealerHand(dealerHand) {
-    let dealerHandCard = document.createElement('div')
+  let dealerHandCard = document.createElement('div')
   dealerHandCard.classList.add('large')
   dealerHandCard.classList.add('card')
   dealerHandCard.classList.add(dealerHand)
@@ -130,7 +132,7 @@ function appendDealerHand(dealerHand) {
   }
 
 function appendDealerHandHidden(dealerHand) {
-    let dealerHandCard = document.createElement('div')
+  let dealerHandCard = document.createElement('div')
   dealerHandCard.classList.add('large')
   dealerHandCard.classList.add('card')
   dealerHandCard.classList.add('back-blue')
@@ -138,19 +140,48 @@ function appendDealerHandHidden(dealerHand) {
   dcards1.appendChild(dealerHandCard)
   }
 
-function catch21(obj) {
-  if (obj.character === 'player' && obj.sum ===21) {
-        messageEl.textContent = `👑 You got a Blackjack!`
+function catch21(sum) {
+  console.log(`${playerSum}<---player,${dealerSum}<----dealer`)
+  if (sum ===21 ) {
+    dcards1.firstChild.classList.remove("back-blue")
+    dealerSumMsg.textContent ="Dealer: "+ dealerSum
+    compareSum()
   }
   
-  else if (obj.character ==="dealer" && obj.sum === 21) {
-    
-    messageEl.textContent = `👑 dealer got a Blackjack!` 
   }
+ 
+  // if (obj.character === 'player' && obj.sum ===21) {
+  //       messageEl.textContent = `👑 You got a Blackjack!`
+  // }
+  
+  // else if (obj.character ==="dealer" && obj.sum === 21) {
+    
+  //   messageEl.textContent = `👑 dealer got a Blackjack!` 
+  // }
+
+
+function compareSum() {
+  
+  if (playerSum ===21 && dealerSum !== 21){
+    messageEl.textContent = `👑 You got a Blackjack!`
+  }
+  else if (dealerSum === playerSum){
+    messageEl.textContent = `Push! 👔 Play again`
+  }
+  else if (playerSum < 21 && dealerSum >21){
+    messageEl.textContent = `winner winner chicken dinner 🍗`
+  }
+
+}
+
+function endPlayerTurn() {
+  //disable button
+  
+  dcards1.firstChild.classList.remove("back-blue")
+  dealerSumMsg.textContent ="Dealer: "+ dealerSum
+
+
 }
 
 
-function play(e) {
-  console.log(e)
-}
 
