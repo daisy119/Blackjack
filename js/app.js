@@ -18,25 +18,41 @@ const standBtn = document.querySelector('#stand')
 const twoBtn = document.querySelector('#two')
 const fiveBtn = document.querySelector('#five')
 const tenBtn = document.querySelector('#ten')
+const dealBtn = document.querySelector('#deal-cards')
 let hiddenCard = document.querySelector('.back-blue')
 const betEl = document.getElementById("bet")
+const currentBetEl = document.getElementById("current-bet")
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', drawPlayer)
 standBtn.addEventListener('click',endPlayerTurn)
-twoBtn.addEventListener('click', () => {
-  totalAmount -=2
-  betEl.textContent = `Bank: $${totalAmount}`
+twoBtn.addEventListener('click', () => { 
+  calculateBet(2)
+  
+  // totalAmount -=2
+  // betEl.textContent = `Bank: $${totalAmount}`
 })
 fiveBtn.addEventListener('click', () => { 
-  totalAmount -=5
-  betEl.textContent = `Bank: $${totalAmount}`})
-tenBtn.addEventListener('click', () => {
-  totalAmount -=10
-  betEl.textContent = `Bank: $${totalAmount}`
+  calculateBet(5)
+  // totalAmount -=5
+  // betEl.textContent = `Bank: $${totalAmount}`
 })
+tenBtn.addEventListener('click', () => {
+  calculateBet(10)
+  // totalAmount -=10
+  // betEl.textContent = `Bank: $${totalAmount}`
+})
+dealBtn.addEventListener('click', dealCards)
+
+
+function calculateBet(a){
+  totalAmount -= a
+  bet += a
+  betEl.textContent = `Bank: $${totalAmount}`
+  currentBetEl.textContent = `Bet: $${bet}`
+}
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -47,9 +63,15 @@ function init() {
   playerSum = 0
   dealerSum = 0
 
+  // set bet
+  bet = 0
+  currentBetEl.textContent = `Bet: $${bet}`
+
   // clear hands
   playerHands = []
+  renderPlayerHands()
   dealerHands = []
+  renderDealerNew()
 
   //reset message
   messageEl.textContent = ""
@@ -62,16 +84,19 @@ function init() {
   //display bet
   betEl.textContent = `Bank: $${totalAmount}`
 
-  // makeBet()
 
 
+
+
+}
+
+function dealCards() {
   //deal
   drawDealer()
   drawDealer()
   drawPlayer()
   drawPlayer()
 }
-
 
 function drawPlayer() {
   if (deck1.length > 0){
@@ -174,7 +199,7 @@ function catch21(sum) {
   else if (sum >21) {
     dcards1.firstChild.classList.remove("back-blue")
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
-    messageEl.textContent = `you lost! try again---->21`
+    messageEl.textContent = `you lost! try again🥀---->21`
   }
   
   }
@@ -186,18 +211,24 @@ function compareSum() {
   
   if (playerSum ===21 && dealerSum !== 21){
     messageEl.textContent = `👑 You got a Blackjack!`
+    won()
+
   }
   else if (playerSum < 21 && dealerSum >21){
     messageEl.textContent = `Winner winner chicken dinner 🍗---dealer >21`
+    won()
   }
   else if (dealerSum === 21) {
     messageEl.textContent = `👑 Dealer got a Blackjack! You lose.`
   }
   else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
     messageEl.textContent = `Winner winner chicken dinner 🍗---dealer <21`
+    won()
+
   }
   else if (dealerSum === playerSum){
     messageEl.textContent = `Push! 👔 Play again`
+    tied()
   }
   else {
     messageEl.textContent = `You lost! try again🥀---else`
@@ -222,3 +253,14 @@ function unhideDealerCard() {
   dcards1.firstChild.classList.remove("back-blue")
 }
 
+function won() {
+  totalAmount += bet*2
+  betEl.textContent = `Bank: $${totalAmount}`
+}
+
+function tied() {
+  totalAmount += bet
+  betEl.textContent = `Bank: $${totalAmount}`
+}
+
+//to do :disable button when result is out and when player hit stand
