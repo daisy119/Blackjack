@@ -1,23 +1,20 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*-------------------------------- Variables --------------------------------*/
-let msg, bet, winner, playerSum, dealerSum, playerHands, dealerHands, deck1
+let msg, bet, playerSum, dealerSum, playerHands, dealerHands, deck1
 let totalAmount = 2500
+
 
 /*------------------------ Cached Element References ------------------------*/
 const dealerSumMsg = document.querySelector('#dealersum')
 const playerSumMsg = document.querySelector('#playersum')
-
+const messageEl = document.getElementById("message")
 const cardContainer = document.querySelector('#card-container')
 const pcards1 = document.querySelector('.pcards1')
 const dcards1 = document.querySelector('.dcards1')
-
-const messageEl = document.getElementById("message")
-
 const playBtn =document.querySelector('#play')
 const hitBtn =document.querySelector('#hit')
 const standBtn =document.querySelector('#stand')
-
 const hiddenCard = document.querySelector('.back-blue')
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -39,8 +36,10 @@ function init() {
   dealerHands = []
 
   //reset message
-  // messageEl.textContent = null 
-
+  messageEl.textContent = ""
+  dealerSumMsg.textContent = ""
+  playerSumMsg.textContent = ""
+  
   // set new deck
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
@@ -118,14 +117,15 @@ function drawDealer(){
 function renderDealerNew(){
   dcards1.innerHTML = ''
   for (let i = 0; i < dealerHands.length; i++) {
-    if (i === 0) {
+    if (i === 0 ) {
+      isHiddenCard = false
       appendDealerHandHidden(dealerHands[i]);
     }
     else {
       appendDealerHand(dealerHands[i]);
     }  
   }
-        }
+  }
 
 function appendDealerHand(dealerHand) {
   let dealerHandCard = document.createElement('div')
@@ -154,7 +154,7 @@ function catch21(sum) {
   else if (sum >21) {
     dcards1.firstChild.classList.remove("back-blue")
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
-    messageEl.textContent = `you lost! try again`
+    messageEl.textContent = `you lost! try again---->21`
   }
   
   }
@@ -168,19 +168,19 @@ function compareSum() {
     messageEl.textContent = `👑 You got a Blackjack!`
   }
   else if (playerSum < 21 && dealerSum >21){
-    messageEl.textContent = `winner winner chicken dinner 🍗`
+    messageEl.textContent = `Winner winner chicken dinner 🍗---dealer >21`
   }
   else if (dealerSum === 21) {
     messageEl.textContent = `👑 Dealer got a Blackjack! You lose.`
   }
   else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
-    messageEl.textContent = `winner winner chicken dinner 🍗`
+    messageEl.textContent = `Winner winner chicken dinner 🍗---dealer <21`
   }
   else if (dealerSum === playerSum){
     messageEl.textContent = `Push! 👔 Play again`
   }
   else {
-    messageEl.textContent = `you lost! try again`
+    messageEl.textContent = `You lost! try again🥀---else`
   }
 
 }
@@ -188,14 +188,17 @@ function compareSum() {
 function endPlayerTurn() {
   //disable hit button
   
-  dcards1.firstChild.classList.remove("back-blue")
-  dealerSumMsg.textContent ="Dealer: "+ dealerSum
-  while(dealerSum< 17  && dealerSum <playerSum) {
+  unhideDealerCard()
+  while(dealerSum< 17  && dealerSum < playerSum) {
     drawDealer()
+    unhideDealerCard()
   }
+  dealerSumMsg.textContent ="Dealer: "+ dealerSum
   compareSum()
 
 }
 
-
+function unhideDealerCard() {
+  dcards1.firstChild.classList.remove("back-blue")
+}
 
