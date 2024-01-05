@@ -4,7 +4,6 @@
 let msg, bet, playerSum, dealerSum, playerHand, dealerHand, deck
 let totalAmount = 2500
 
-
 /*------------------------ Cached Element References ------------------------*/
 const dealerSumMsg = document.querySelector('#dealersum')
 const playerSumMsg = document.querySelector('#playersum')
@@ -31,7 +30,6 @@ wrongSound.volume = 0.3
 pokerSound.volume = 0.3
 coinSound.volume = 0.3
 
-
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', drawPlayer)
@@ -54,6 +52,7 @@ function calculateBet(a){
   betEl.textContent = `Bank: $${totalAmount}`
   currentBetEl.textContent = `Bet: $${bet}`
   coinSound.play()
+  
 }
 
 /*-------------------------------- Functions --------------------------------*/
@@ -85,6 +84,13 @@ function init() {
 
   //display bet
   betEl.textContent = `Bank: $${totalAmount}`
+
+  //hide Hit and Stand Button
+  hitBtn.style.visibility = "hidden"
+  standBtn.style.visibility = "hidden"
+  twoBtn.style.visibility = "visible"
+  fiveBtn.style.visibility = "visible"
+  tenBtn.style.visibility = "visible"
 }
 
 function dealCards() {
@@ -94,6 +100,11 @@ function dealCards() {
   drawPlayer()
   drawPlayer()
   jazzSound.play()
+  hitBtn.style.visibility = "visible"
+  standBtn.style.visibility = "visible"
+  twoBtn.style.visibility = "hidden"
+  fiveBtn.style.visibility = "hidden"
+  tenBtn.style.visibility = "hidden"
 }
 
 function drawPlayer() {
@@ -196,7 +207,7 @@ function catch21(sum) {
   else if (sum >21) {
     dcards1.firstChild.classList.remove("back-blue")
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
-    messageEl.textContent = `Bust💨! try again🥀`
+    messageEl.textContent = `Bust 🤯! try again🥀`
     wrongSound.play()
   }
 }
@@ -209,14 +220,14 @@ function compareSum() {
     won()
   }
   else if (playerSum < 21 && dealerSum >21){
-    messageEl.textContent = `Winner winner chicken dinner 🍗---dealer >21`
+    messageEl.textContent = `Winner winner chicken dinner 🍗 dealer bust 🤯`
     won()
   }
   else if (dealerSum === 21) {
     messageEl.textContent = `👑 Dealer got a Blackjack! You lose.`
   }
   else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
-    messageEl.textContent = `Winner winner chicken dinner 🍗---dealer <21`
+    messageEl.textContent = `Winner winner chicken dinner 🍗`
     won()
   }
   else if (dealerSum === playerSum){
@@ -227,6 +238,7 @@ function compareSum() {
     messageEl.textContent = `You lost! try again🥀---else`
     wrongSound.play()
   }
+  
 
 }
 
