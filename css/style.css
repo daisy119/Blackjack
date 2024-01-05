@@ -1,5 +1,5 @@
 body {
-	background-color: #c0c0c0;
+	
   height: 100%;
   padding: 200px;
   display: flex;
@@ -40,11 +40,6 @@ img {
   height: 40px;
 }
 
-#play {
-  background-color: black;
-  width: 305px;
-}
-
 .pcards1, .dcards1 {
 
   display: flex wrap;
@@ -53,6 +48,16 @@ img {
   width: 400 px;
   padding: 14px;
 }
+
+/* .container{
+  background-color: rgba(237,235,225,0.5);
+} */
+
+#play {
+  background-color: black;
+  width: 305px; 
+}
+
 
 #dealersum, #playersum {
   color:white;
@@ -95,6 +100,12 @@ img {
   color:white; 
   background-color: blue;
   border:2px white dashed;
+ }
+
+ #deal-cards:hover {
+  border:2px white dotted;
+  color: white;
+  background-color: goldenrod;
  }
 
 #sign {

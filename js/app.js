@@ -46,14 +46,7 @@ tenBtn.addEventListener('click', () => {
 dealBtn.addEventListener('click', dealCards)
 
 
-function calculateBet(a){
-  totalAmount -= a
-  bet += a
-  betEl.textContent = `Bank: $${totalAmount}`
-  currentBetEl.textContent = `Bet: $${bet}`
-  coinSound.play()
-  
-}
+
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -91,6 +84,15 @@ function init() {
   twoBtn.style.visibility = "visible"
   fiveBtn.style.visibility = "visible"
   tenBtn.style.visibility = "visible"
+}
+
+function calculateBet(a){
+  totalAmount -= a
+  bet += a
+  betEl.textContent = `Bank: $${totalAmount}`
+  currentBetEl.textContent = `Bet: $${bet}`
+  coinSound.play()
+  
 }
 
 function dealCards() {
@@ -196,7 +198,6 @@ function appendDealerHandHidden(dealerHand) {
   }
 
 function catch21(sum) {
-  console.log(`${playerSum}<---player,${dealerSum}<----dealer`)
   if (sum ===21 ) {
     dcards1.firstChild.classList.remove("back-blue")
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
@@ -245,7 +246,7 @@ function compareSum() {
     standBtn.style.visibility = "hidden"
   }
   else {
-    messageEl.textContent = `You lost! try again🥀---else`
+    messageEl.textContent = `You lost! try again🥀`
     wrongSound.play()
     hitBtn.style.visibility = "hidden"
     standBtn.style.visibility = "hidden"
