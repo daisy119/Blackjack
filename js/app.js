@@ -78,8 +78,8 @@ function init() {
   betEl.textContent = `Bank: $${totalAmount}`
 
   //hide Hit and Stand Button
-  hitBtn.style.visibility = "hidden"
-  standBtn.style.visibility = "hidden"
+  hitBtn.style.visibility = "visible"
+  standBtn.style.visibility = "visible"
   twoBtn.style.visibility = "visible"
   fiveBtn.style.visibility = "visible"
   tenBtn.style.visibility = "visible"
@@ -115,6 +115,7 @@ function drawPlayer() {
     playerSum = calculateHand(playerHand)
     playerSumMsg.textContent ="Player: "+ playerSum
     catch21(playerSum)
+    pokerSound.play()
   }
 }
 
@@ -123,7 +124,7 @@ function renderPlayerHand() {
   playerHand.forEach(playerHand =>{
     appendPlayerHand(playerHand)
   })
-  pokerSound.play()
+  
 }
 
 function appendPlayerHand(playerHand) {
@@ -134,7 +135,7 @@ function appendPlayerHand(playerHand) {
   pcards1.appendChild(playerHandCard)
 }
 
-//ace logic
+//getting the card amount, ace logic
 function calculateHand(hand) {
   let playerSum = 0
   let aceCounter = 0
@@ -188,7 +189,7 @@ function appendDealerHand(dealerHand) {
   dcards1.appendChild(dealerHandCard)
   }
 
-  //add hidden card
+  //add hidden
 function appendDealerHandHidden(dealerHand) {
   let dealerHandCard = document.createElement('div')
   dealerHandCard.classList.add('large')
