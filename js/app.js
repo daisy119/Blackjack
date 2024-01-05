@@ -8,7 +8,6 @@ let totalAmount = 2500
 const dealerSumMsg = document.querySelector('#dealersum')
 const playerSumMsg = document.querySelector('#playersum')
 const messageEl = document.getElementById("message")
-const cardContainer = document.querySelector('#card-container')
 const pcards1 = document.querySelector('.pcards1')
 const dcards1 = document.querySelector('.dcards1')
 const playBtn =document.querySelector('#play')
@@ -96,7 +95,7 @@ function calculateBet(a){
 }
 
 function dealCards() {
-  //deal
+  //deal cards
   drawDealer()
   drawDealer()
   drawPlayer()
@@ -135,6 +134,7 @@ function appendPlayerHand(playerHand) {
   pcards1.appendChild(playerHandCard)
 }
 
+//ace logic
 function calculateHand(hand) {
   let playerSum = 0
   let aceCounter = 0
@@ -188,6 +188,7 @@ function appendDealerHand(dealerHand) {
   dcards1.appendChild(dealerHandCard)
   }
 
+  //add hidden card
 function appendDealerHandHidden(dealerHand) {
   let dealerHandCard = document.createElement('div')
   dealerHandCard.classList.add('large')
@@ -197,6 +198,7 @@ function appendDealerHandHidden(dealerHand) {
   dcards1.appendChild(dealerHandCard)
   }
 
+//dealer reveal the card ,whe player sum =21
 function catch21(sum) {
   if (sum ===21 ) {
     dcards1.firstChild.classList.remove("back-blue")
@@ -251,13 +253,10 @@ function compareSum() {
     hitBtn.style.visibility = "hidden"
     standBtn.style.visibility = "hidden"
   }
-  
-
 }
 
+//stand button
 function endPlayerTurn() {
-  //disable hit button
-  
   unhideDealerCard()
   while(dealerSum< 17  && dealerSum < playerSum) {
     drawDealer()
@@ -267,18 +266,19 @@ function endPlayerTurn() {
   compareSum()
 }
 
+
 function unhideDealerCard() {
   dcards1.firstChild.classList.remove("back-blue")
 }
 
+//bet win situation
 function won() {
   totalAmount += bet*2
   betEl.textContent = `Bank: $${totalAmount}`
 }
 
+//bet tie situation
 function tied() {
   totalAmount += bet
   betEl.textContent = `Bank: $${totalAmount}`
 }
-
-//to do :disable button when result is out and when player hit stand

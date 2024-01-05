@@ -4,7 +4,7 @@
  
  Blackjack is a card game in which the objective is to achieve a hand value of 21 or less while surpassing the dealer's hand. Players begin by selecting bets range from $2 to $10 and then clicking the "Deal" button. Throughout the game, players can decide to click "Hit" or "Stand" button based on the strength of their current hand. Exceeding a hand value of 21 results in a loss. Players can click "Play New Game " to restart the game.   
 
-## game specific rules  
+## ♣️Game specific rules  
 Ace 1/11 logic  
 - If the total sum is 21 or less, the value of an ace is 11.
 - If the total sum is greater than 21, the value of an ace is 1.
@@ -49,8 +49,10 @@ bet
 - [x] hide Hit and Stand Button until players click Deal button
 - [ ] set max card num = 6
 - [ ] Confetti
+- [ ] Horizonal layout 
+- [ ] when total amount is negative, hide deal button and display message
 - [ ] card animations(animate.css)
-- [ ] celebrating sound effect + "bust in the msg"
+- [ ] celebrating sound effect
 - [ ] library for fun winning/losing messages
 - [ ] dark/light mode
 
