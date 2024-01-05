@@ -102,9 +102,7 @@ function dealCards() {
   jazzSound.play()
   hitBtn.style.visibility = "visible"
   standBtn.style.visibility = "visible"
-  twoBtn.style.visibility = "hidden"
-  fiveBtn.style.visibility = "hidden"
-  tenBtn.style.visibility = "hidden"
+
 }
 
 function drawPlayer() {
@@ -209,6 +207,8 @@ function catch21(sum) {
     dealerSumMsg.textContent ="Dealer: "+ dealerSum
     messageEl.textContent = `Bust 🤯! try again🥀`
     wrongSound.play()
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
 }
 
@@ -218,25 +218,37 @@ function compareSum() {
   if (playerSum ===21 && dealerSum !== 21){
     messageEl.textContent = `👑 You got a Blackjack!`
     won()
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
   else if (playerSum < 21 && dealerSum >21){
     messageEl.textContent = `Winner winner chicken dinner 🍗 dealer bust 🤯`
     won()
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
   else if (dealerSum === 21) {
     messageEl.textContent = `👑 Dealer got a Blackjack! You lose.`
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
   else if (playerSum < 21 && dealerSum <21 && playerSum >dealerSum) {
     messageEl.textContent = `Winner winner chicken dinner 🍗`
     won()
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
   else if (dealerSum === playerSum){
     messageEl.textContent = `Push! 👔 Play again`
     tied()
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
   else {
     messageEl.textContent = `You lost! try again🥀---else`
     wrongSound.play()
+    hitBtn.style.visibility = "hidden"
+    standBtn.style.visibility = "hidden"
   }
   
 
