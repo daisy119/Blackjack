@@ -37,7 +37,7 @@
 # 🧊 Ice Box  
 - [x] add google fonts
 - [x] add sound effect
-- [ ] Disable Hit and Stand Button until players click Deal button
+- [x] hide Hit and Stand Button until players click Deal button
 - [ ] set max card num = 6
 - [ ] Confetti
 - [ ] celebration animations(animate.css)

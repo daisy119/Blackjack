@@ -75,7 +75,27 @@ img {
   width: 60px;
   color:red;
   background-color: black;
+  border:2px white dashed;
 }
+
+
+#two:hover {
+ color:white; 
+ background-color: red;
+ border:2px white dashed;
+}
+
+#five:hover {
+  color:white; 
+  background-color: green;
+  border:2px white dashed;
+ }
+
+ #ten:hover {
+  color:white; 
+  background-color: blue;
+  border:2px white dashed;
+ }
 
 #sign {
   width:40px;
